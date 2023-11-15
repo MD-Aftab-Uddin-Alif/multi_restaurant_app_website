@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\BannerController;
 use App\Http\Controllers\API\FoodController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -39,6 +40,12 @@ Route::Group(['middleware' => 'api.verify.multi_restaurant'], function () {
 
     Route::Group(['prefix' => 'food'], function () {
         Route::controller(FoodController::class)->group(function () {
+            Route::get('list',  'getList');
+        });
+    });
+
+    Route::Group(['prefix' => 'banner'], function () {
+        Route::controller(BannerController::class)->group(function () {
             Route::get('list',  'getList');
         });
     });
